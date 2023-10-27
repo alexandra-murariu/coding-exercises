@@ -16,9 +16,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+    permissions:
+      contents: write
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }} 
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
@@ -28,12 +35,52 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install sphinx
+        pip install coverage
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Check unittests existence
+      run: |
+        cd $GITHUB_WORKSPACE
+        for file in exercises/**/*.py; do
+          if [ "$(basename "$file")" != "__init__.py" ]; then
+            exercise_path=$(dirname "$file")
+            exercise_path=${exercise_path#exercises/} # Remove "exercises/" from the beginning
+            test_file="tests/$exercise_path/test_$(basename "$file")"
+            if [ ! -f "$test_file" ]; then
+              echo "Missing unittest file: $test_file"
+              exit 1
+            fi
+          fi
+        done
     - name: Test with unittest
       run: |
-        unittest
+        cd $GITHUB_WORKSPACE
+        coverage run -m unittest discover
+        coverage report -m --omit="*test*,*__init__.py"
+        coverage html --omit="*test*,*__init__.py"
+      working-directory: tests
+    - name: Build Sphinx Documentation
+      run: |
+        sphinx-apidoc -o source/ .  # Automatically generate .rst files from docstrings
+        sphinx-build -b html . build/
+      working-directory: ${{ github.workspace }}
+    - name: Deploy Documentation
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: "${{ github.workspace }}/build"
+    - name: Upload coverage
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage
+        path: "${{ github.workspace }}/htmlcov"
+    - name: Upload docs
+      uses: actions/upload-artifact@v3
+      with:
+        name: docs
+        path: "${{ github.workspace }}/build"
