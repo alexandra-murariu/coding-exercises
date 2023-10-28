@@ -103,10 +103,6 @@ The pipeline executes the following steps at each commit:
 7. upload coverage report as artifact
 8. upload documentation as artifact
 
-```
-command to run if program contains helper info
-```
-
 ## Author
 
 [Alexandra Murariu](murariu.alexandra2002@gmail.com)
