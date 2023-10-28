@@ -9,7 +9,9 @@ Welcome to coding-exercises's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   exercises/exercise_1/exercise_1
+   exercises/exercise_1/exercise_1_hashable_objects
+   exercises/exercise_2/exercise_2
 
 
 Indices and tables
