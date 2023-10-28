@@ -21,3 +21,6 @@ class TestExercise1(unittest.TestCase):
     def test_get_duplicates_only_duplicates(self):
         self.assertEqual(get_duplicates(["b", 1, 2, "a", 3, (1, 2), "b", 1, 2, "a", 3, (1, 2)]),
                          ["b", 1, 2, "a", 3, (1, 2)])
+
+if __name__ == "__main__":
+	unittest.main()
