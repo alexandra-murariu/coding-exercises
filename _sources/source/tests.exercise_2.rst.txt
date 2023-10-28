@@ -1,0 +1,21 @@
+tests.exercise\_2 package
+=========================
+
+Submodules
+----------
+
+tests.exercise\_2.test\_exercise\_2 module
+------------------------------------------
+
+.. automodule:: tests.exercise_2.test_exercise_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: tests.exercise_2
+   :members:
+   :undoc-members:
+   :show-inheritance:

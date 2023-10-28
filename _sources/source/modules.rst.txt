@@ -1,0 +1,9 @@
+coding-exercises
+================
+
+.. toctree::
+   :maxdepth: 4
+
+   conf
+   exercises
+   tests

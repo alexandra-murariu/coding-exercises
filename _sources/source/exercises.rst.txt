@@ -1,0 +1,19 @@
+exercises package
+=================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   exercises.exercise_1
+   exercises.exercise_2
+
+Module contents
+---------------
+
+.. automodule:: exercises
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,29 @@
+tests.exercise\_1 package
+=========================
+
+Submodules
+----------
+
+tests.exercise\_1.test\_exercise\_1 module
+------------------------------------------
+
+.. automodule:: tests.exercise_1.test_exercise_1
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tests.exercise\_1.test\_exercise\_1\_hashable\_objects module
+-------------------------------------------------------------
+
+.. automodule:: tests.exercise_1.test_exercise_1_hashable_objects
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: tests.exercise_1
+   :members:
+   :undoc-members:
+   :show-inheritance:

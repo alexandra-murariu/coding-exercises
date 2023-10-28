@@ -1,0 +1,21 @@
+exercises.exercise\_2 package
+=============================
+
+Submodules
+----------
+
+exercises.exercise\_2.exercise\_2 module
+----------------------------------------
+
+.. automodule:: exercises.exercise_2.exercise_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: exercises.exercise_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
