@@ -38,14 +38,22 @@
 <span id="exercises-exercise-1-exercise-1-module"></span><h2>exercises.exercise_1.exercise_1 module<a class="headerlink" href="#module-exercises.exercise_1.exercise_1" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="exercises.exercise_1.exercise_1.get_duplicates">
-<span class="sig-prename descclassname"><span class="pre">exercises.exercise_1.exercise_1.</span></span><span class="sig-name descname"><span class="pre">get_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#exercises.exercise_1.exercise_1.get_duplicates" title="Link to this definition">¶</a></dt>
-<dd><p>This function returns a list of duplicate elements in a given list.</p>
+<span class="sig-prename descclassname"><span class="pre">exercises.exercise_1.exercise_1.</span></span><span class="sig-name descname"><span class="pre">get_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst:</span> <span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comparator=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#exercises.exercise_1.exercise_1.get_duplicates" title="Link to this definition">¶</a></dt>
+<dd><p>This function returns a list of duplicate elements in a given list. It is compatible with hashable or non-hashable
+elements in the input, as long as the object type does have the comparator definition.</p>
+<p>It is not as efficient as the only-hashable objects solution (which is displayed in module
+exercise_1_hashable_objects.py). In here, any new item is added to the appeared list. If it is already present in
+the appeared list, we should see if it is present in the result list. If not, the element is added to the result
+list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>lst</strong> (<em>list</em>) – The input list (can contain any type of objects).</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lst</strong> (<em>list</em>) – The input list (can contain any type of objects).</p></li>
+<li><p><strong>comparator</strong> (<em>function</em>) – The equality of duplicates operator (could be ‘==’, or ‘is’, or any other comparator)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list containing duplicate elements (“duplicate” in this case refers to “is” equality).</p>
+<dd class="field-even"><p>A list containing duplicate elements (“duplicate” in this case refers to the comparator defined equality).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -59,7 +67,15 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="exercises.exercise_1.exercise_1_hashable_objects.get_duplicates">
 <span class="sig-prename descclassname"><span class="pre">exercises.exercise_1.exercise_1_hashable_objects.</span></span><span class="sig-name descname"><span class="pre">get_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#exercises.exercise_1.exercise_1_hashable_objects.get_duplicates" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This function returns a list of duplicate elements in a given list. It is compatible only with hashable
+elements in the input.</p>
+<p>This solution is more efficient than the previous one, because it uses a dictionary, whose keys (objects) are stored
+inside a hashmap. Thus, key lookup is on average O(1).
+:param lst: the input list of hashable elements
+:type lst: list
+:return: the duplicates list
+:rtype: list</p>
+</dd></dl>
 
 </section>
 <section id="module-exercises.exercise_1">

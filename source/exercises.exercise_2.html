@@ -38,18 +38,55 @@
 <span id="exercises-exercise-2-exercise-2-module"></span><h2>exercises.exercise_2.exercise_2 module<a class="headerlink" href="#module-exercises.exercise_2.exercise_2" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="exercises.exercise_2.exercise_2.DependencyGraph">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exercises.exercise_2.exercise_2.</span></span><span class="sig-name descname"><span class="pre">DependencyGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/tmp/deps.json'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exercises.exercise_2.exercise_2.DependencyGraph" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exercises.exercise_2.exercise_2.</span></span><span class="sig-name descname"><span class="pre">DependencyGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exercises.exercise_2.exercise_2.DependencyGraph" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class that defines a Dependency Graph: a graph of packages with their dependencies. This class can read the JSON
+configuration of this graph from a file, and can represent both the whole graph as a string, or the dependencies
+of a single package given as argument.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="exercises.exercise_2.exercise_2.DependencyGraph.indent_lines">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">indent_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr_of_tabs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#exercises.exercise_2.exercise_2.DependencyGraph.indent_lines" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Function that puts a given number of tabs (:param nr_of_tabs) at the beginning of each new line, in order to be
+able to construct the dependency graph at any depth level.
+:param lines: the string that represents the dependencies of a package, as lines
+:type lines: str
+:param nr_of_tabs: the number of tabs that must be inserted to the beginning of each line
+:type nr_of_tabs: int
+:return: the transformed string
+:rtype: str</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="exercises.exercise_2.exercise_2.DependencyGraph.repr">
 <span class="sig-name descname"><span class="pre">repr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr_of_tabs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#exercises.exercise_2.exercise_2.DependencyGraph.repr" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Function that returns the graph representation of the dependencies of a given package (:param package), at a
+given depth level (:param nr_of_tabs)
+:param package: the package to be represented
+:type package: str
+:param nr_of_tabs: the depth level (number of tabs to be added at the beginning of each line from the string
+representation of the output)
+:type nr_of_tabs: int
+:return: the string representation of the dependencies of the given package
+:rtype: str</p>
+</dd></dl>
 
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exercises.exercise_2.exercise_2.PackageNotDefinedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exercises.exercise_2.exercise_2.</span></span><span class="sig-name descname"><span class="pre">PackageNotDefinedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exercises.exercise_2.exercise_2.PackageNotDefinedError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Custom Error class created for the case when an operation on an undefined package (e.g. from a JSON file) is tried.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exercises.exercise_2.exercise_2.return_dep_graph">
+<span class="sig-prename descclassname"><span class="pre">exercises.exercise_2.exercise_2.</span></span><span class="sig-name descname"><span class="pre">return_dep_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/tmp/deps.json'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#exercises.exercise_2.exercise_2.return_dep_graph" title="Link to this definition">¶</a></dt>
+<dd><p>Function that returns the string representation of an entire graph that is read from the given path (:param path)
+:param path: the path where the JSON representation of the graph is found
+:type path: str
+:return: the string representation of the dependencies graph
+:rtype: str</p>
 </dd></dl>
 
 </section>
