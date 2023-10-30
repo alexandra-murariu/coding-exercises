@@ -51,7 +51,7 @@ class DependencyGraph:
         lines = lines.replace(package_delimiter, tab * nr_of_tabs + package_delimiter)
         return lines
 
-    def repr(self, package: str, nr_of_tabs: int = 0) -> str:
+    def package_repr(self, package: str, nr_of_tabs: int = 0) -> str:
         """
         Function that returns the graph representation of the dependencies of a given package (:param package), at a
         given depth level (:param nr_of_tabs)
@@ -68,7 +68,7 @@ class DependencyGraph:
         repr_for_package = tab * nr_of_tabs + package_delimiter + space + package
         for dep in self.dependencies_dict[package]:
             if dep not in self.pkg_cache_repr.keys():
-                self.pkg_cache_repr[dep] = self.repr(dep, 0)
+                self.pkg_cache_repr[dep] = self.package_repr(dep, 0)
             repr_for_package += dependency_delimiter + DependencyGraph.indent_lines(self.pkg_cache_repr[dep],
                                                                                     nr_of_tabs + 1)
         return repr_for_package
@@ -80,7 +80,7 @@ class DependencyGraph:
         """
         result = ""
         for package in self.dependencies_dict:
-            result += self.repr(package, 0) + "\n"
+            result += self.package_repr(package, 0) + "\n"
         return result
 
 

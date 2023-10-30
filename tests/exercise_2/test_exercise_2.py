@@ -28,26 +28,26 @@ class TestDependencyGraph(unittest.TestCase):
     @patch('builtins.open', new_callable=mock_open, read_data='{"pkg1": []}')
     def test_repr_single_package_no_dependencies(self, mock_read):
         d = DependencyGraph('path/to/file')
-        self.assertEqual(d.repr("pkg1"), "- pkg1")
+        self.assertEqual(d.package_repr("pkg1"), "- pkg1")
 
     @patch('builtins.open', new_callable=mock_open,
            read_data='{"pkg1": ["pkg2", "pkg3"], "pkg2": [], "pkg3": []}')
     def test_repr_multiple_packages_nonrecursive_dependencies(self, mock_read):
         d = DependencyGraph('path/to/file')
-        self.assertEqual(d.repr("pkg1"), "- pkg1\n  - pkg2\n  - pkg3")
+        self.assertEqual(d.package_repr("pkg1"), "- pkg1\n  - pkg2\n  - pkg3")
 
     @patch('builtins.open', new_callable=mock_open,
            read_data='{"pkg1": ["pkg2", "pkg3"], "pkg2": ["pkg3"], "pkg3": []}')
     def test_repr_multiple_packages_recursive_dependencies(self, mock_read):
         d = DependencyGraph('path/to/file')
-        self.assertEqual(d.repr("pkg1"), "- pkg1\n  - pkg2\n    - pkg3\n  - pkg3")
+        self.assertEqual(d.package_repr("pkg1"), "- pkg1\n  - pkg2\n    - pkg3\n  - pkg3")
 
     @patch('builtins.open', new_callable=mock_open,
            read_data='{"pkg1": ["pkg2", "pkg3"], "pkg2": ["pkg3"], "pkg3": []}')
     def test_repr_nonexistent_package(self, mock_read):
         d = DependencyGraph('path/to/file')
         with self.assertRaises(PackageNotDefinedError) as e:
-            d.repr("pkg4")
+            d.package_repr("pkg4")
         self.assertEqual(str(e.exception), "Package pkg4 does not exist!")
 
     @patch('builtins.open', new_callable=mock_open,
@@ -55,7 +55,7 @@ class TestDependencyGraph(unittest.TestCase):
     def test_repr_nonexistent_package_as_dependency(self, mock_read):
         d = DependencyGraph('path/to/file')
         with self.assertRaises(PackageNotDefinedError) as e:
-            d.repr("pkg1")
+            d.package_repr("pkg1")
         self.assertEqual(str(e.exception), "Package pkg4 does not exist!")
 
     @patch('builtins.open', new_callable=mock_open,

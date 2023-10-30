@@ -84,3 +84,10 @@ jobs:
       with:
         name: docs
         path: "${{ github.workspace }}/build"
+    - name: Upload exercises as artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: exercises
+        path: |
+          ${{ github.workspace }}/exercises/**/*.py
+          !${{ github.workspace }}/exercises/**/__init__.py
